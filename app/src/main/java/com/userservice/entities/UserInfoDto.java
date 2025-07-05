@@ -18,6 +18,7 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserInfoDto {
+
     @JsonProperty("user_id")
     @NonNull
     private String userId;
@@ -40,4 +41,15 @@ public class UserInfoDto {
 
     @JsonProperty("profile_pic")
     private String profilePic;
+
+    public UserInfo transformToUserInfo() {
+        return UserInfo.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .userId(userId)
+                .email(email)
+                .profilePic(profilePic)
+                .phoneNumber(phoneNumber).build();
+    }
+
 }
